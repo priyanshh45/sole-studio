@@ -1,29 +1,56 @@
-# Sole Studio
+# 👟 Sole Studio
 
-Sole Studio is a web-based e-commerce platform developed as part of a web development course. It allows users to explore, customize, and purchase stylish shoes with a personalized touch.
+Sole Studio is a full-stack web application built as part of a web development course. It allows users to browse, review, and customize stylish shoes in an interactive and user-friendly interface.
 
-## Features
+---
 
-* 🛍️ Browse a collection of trendy shoes
-* 🎨 Customize shoes (colors, styles, etc.)
-* 🛒 Add to cart and manage orders
-* 🔐 User authentication (login/signup) *(if included)*
-* 📱 Responsive design for mobile and desktop
+## 🚀 Features
+
+*  Browse a variety of shoes
+*  Shoe customization options *(UI-based)*
+*  Add and view product reviews
+*  Shopping cart functionality
+*  Dynamic product rendering using EJS templates
+*  Responsive design
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Frontend:** HTML, CSS, JavaScript *(or React if you used it)*
-* **Backend:** Node.js / Express *(edit if different)*
-* **Database:** MongoDB / MySQL *(edit if different)*
-* **Tools:** Git, GitHub, VS Code
+* **Frontend:** HTML, CSS, JavaScript
+* **Templating Engine:** EJS
+* **Backend:** Node.js, Express.js
+* **Database:** JSON (products.json)
+* **Version Control:** Git & GitHub
 
 ---
 
-## 📸 Screenshots
+## 📂 Project Structure
 
-*(Add screenshots of your project here)*
+```plaintext
+SOLE-STUDIO-PROJECT/
+│── models/
+│   ├── Product.js
+│   └── Review.js
+│
+│── public/
+│   ├── images/
+│   ├── styles.css
+│   ├── script.js
+│   └── products.json
+│
+│── views/
+│   ├── partials/
+│   │   ├── header.ejs
+│   │   └── footer.ejs
+│   ├── index.ejs
+│   ├── cart.ejs
+│   └── reviews.ejs
+│
+│── server.js
+│── package.json
+│── .gitignore
+```
 
 ---
 
@@ -47,20 +74,16 @@ cd sole-studio
 npm install
 ```
 
-4. Run the project:
+4. Start the server:
 
 ```bash
-npm start
+node server.js
+```
+
+5. Open in browser:
+
+```plaintext
+http://localhost:3000
 ```
 
 ---
-
-## 📂 Project Structure
-
-```
-sole-studio/
-│── frontend/
-│── backend/
-│── assets/
-│── package.json
-│── README.md
