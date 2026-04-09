@@ -1,0 +1,21 @@
+{
+  "name": "sole-studio-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --tls-min-v1.0 server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongodb": "^7.0.0",
+    "mongoose": "^8.20.0",
+    "nodemon": "^3.1.11"
+  }
+}

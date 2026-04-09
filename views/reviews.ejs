@@ -1,0 +1,64 @@
+<%- include('partials/header') %>
+<section class="section">
+  <div class="container">
+    <h2 class="title">Customer Reviews</h2>
+    <!-- Review form -->
+    <form action="/reviews" method="POST" style="margin-bottom: 2em;">
+      <input name="user" required placeholder="Your name">
+      <select name="rating" required>
+        <option value="">Rating</option>
+        <% for(let i=1; i<=5; i++) { %>
+          <option value="<%= i %>"><%= i %> star</option>
+        <% } %>
+      </select>
+      <textarea name="message" required placeholder="Your feedback"></textarea>
+      <button type="submit" class="btn">Submit Review</button>
+    </form>
+
+    <!-- Rating filter -->
+    <label>Filter by Rating:
+      <select id="filterRating">
+        <option value="">All</option>
+        <% for(let i=1; i<=5; i++) { %><option value="<%= i %>"><%= i %></option><% } %>
+      </select>
+    </label>
+
+    <!-- Reviews list -->
+    <div id="reviewsList">
+      <% reviews.forEach(r => { %>
+        <div class="review-card" style="border:1px solid #ddd; margin:10px 0; padding:10px;">
+          <strong><%= r.user %></strong>
+          <span><%= '★'.repeat(r.rating) %></span>
+          <button onclick="toggleDetail(this)" class="btn btn-ghost" style="float:right;">Show/Hide Details</button>
+          <div class="review-message" style="display:none;"><%= r.message %></div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<script>
+function toggleDetail(btn) {
+  const msg = btn.parentNode.querySelector('.review-message');
+  msg.style.display = (msg.style.display === 'none' || msg.style.display === '') ? 'block' : 'none';
+}
+
+// Filtering reviews via AJAX
+document.getElementById('filterRating').addEventListener('change', function() {
+  let val = this.value;
+  fetch('/api/reviews' + (val ? '?rating=' + val : ''))
+    .then(res => res.json())
+    .then(reviews => {
+      let html = '';
+      reviews.forEach(r => {
+        html += `<div class="review-card" style="border:1px solid #ddd; margin:10px 0; padding:10px;">
+          <strong>${r.user}</strong>
+          <span>${'★'.repeat(r.rating)}</span>
+          <button onclick="toggleDetail(this)" class="btn btn-ghost" style="float:right;">Show/Hide Details</button>
+          <div class="review-message" style="display:none;">${r.message}</div>
+        </div>`;
+      });
+      document.getElementById('reviewsList').innerHTML = html;
+    });
+});
+</script>
+<%- include('partials/footer') %>

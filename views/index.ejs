@@ -1,0 +1,165 @@
+<%- include('partials/header') %>
+<main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+        <p class="eyebrow">Sole Studio</p>
+        <h1 class="display">Custom & Classic Shoes</h1>
+        <p class="lead">Build your perfect pair or choose from our curated collection. Simple, aesthetic, and crafted to last.</p>
+        <div class="cta">
+          <a class="btn btn-lg" href="#shop">Shop now</a>
+          <a class="btn btn-lg btn-outline" href="#customize">Design your own</a>
+        </div>
+        <ul class="badges">
+          <li><span class="dot"></span>Handmade quality</li>
+          <li><span class="dot"></span>Free returns</li>
+          <li><span class="dot"></span>Carbon neutral</li>
+        </ul>
+      </div>
+      <div class="hero-bg"></div>
+  </section>
+
+  <!-- Shop Section -->
+  <section id="shop" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="title">Featured shoes</h2>
+          <p class="muted">Our most-loved pairs, ready to ship.</p>
+        </div>
+        <a class="btn btn-ghost" href="#shop">View all</a>
+      </div>
+      <div class="grid cards" id="productList">
+        <% products.forEach(p => { %>
+          <article class="card">
+            <div class="media"><img src="<%= p.image %>" alt="<%= p.name %>"></div>
+            <div class="card-body">
+              <h3><%= p.name %></h3>
+              <p class="muted">₹<%= p.price %></p>
+              <div class="row">
+                <button class="btn btn-sm add-to-cart"
+                  data-id="<%= p.id %>" data-name="<%= p.name %>" data-price="<%= p.price %>">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customize Section -->
+  <section id="customize" class="section">
+      <div class="container grid two">
+        <div class="stack">
+          <p class="eyebrow">Make it yours</p>
+          <h2 class="title">Customize your pair</h2>
+          <p class="muted">Choose your palette, materials, and details. Preview changes live and order your one-of-a-kind sneakers.</p>
+
+          <form class="swatches customizer" id="customizer">
+            <label>Choose Color:</label>
+            <select id="colorSelect">
+              <option value="Terracotta" data-price="6999" style="color:#d1663b;">Terracotta — ₹6999</option>
+              <option value="Forest" data-price="7499" style="color:#2f6b4f;">Forest — ₹7499</option>
+              <option value="Navy" data-price="7299" style="color:#1f2b4e;">Navy — ₹7299</option>
+              <option value="Sand" data-price="6799" style="color:#c7b299;">Sand — ₹6799</option>
+            </select>
+
+            <label>Choose Material:</label>
+            <select id="materialSelect">
+              <option value="Leather" data-price="1000">Leather (+₹1000)</option>
+              <option value="Canvas" data-price="500">Canvas (+₹500)</option>
+              <option value="Suede" data-price="1200">Suede (+₹1200)</option>
+            </select>
+          </form>
+
+          <p id="totalPrice" class="muted">Total: ₹6999</p>
+
+          <div class="row">
+            <button id="addCustomToCart" class="btn">Add Customized Shoe</button>
+          </div>
+        </div>
+
+        <div class="preview-wrap">
+          <div class="preview">
+            <img id="customPreview" src="https://images.pexels.com/photos/17825340/pexels-photo-17825340.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Customizable shoe">
+          </div>
+          <p class="hint muted">Preview of selected color/material combination.</p>
+        </div>
+      </div>
+    </section>
+
+  <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal hidden">
+      <div class="cart-content">
+        <h2>Your Cart</h2>
+        <ul id="cartItems"></ul>
+        <p id="cartTotal">Total: ₹0</p>
+        <button id="checkoutBtn" class="btn">Proceed to Checkout</button>
+        <button id="closeCart" class="btn btn-outline">Close</button>
+      </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="cart-modal hidden">
+      <div class="cart-content">
+        <h2>Checkout</h2>
+        <form id="checkoutForm">
+          <label>Name:</label>
+          <input type="text" required>
+          <label>Address:</label>
+          <textarea required></textarea>
+          <label>Payment Method:</label>
+          <select required>
+            <option value="cod">Cash on Delivery</option>
+            <option value="upi">UPI</option>
+            <option value="card">Credit/Debit Card</option>
+          </select>
+          <button type="submit" class="btn">Complete Order</button>
+          <button type="button" id="closeCheckout" class="btn btn-outline">Cancel</button>
+        </form>
+      </div>
+    </div>
+  <!-- Membership Section -->
+  <section id="membership" class="section">
+      <div class="container">
+        <p class="eyebrow">Membership</p>
+        <h2 class="title">Join the Studio</h2>
+        <p class="muted">Members get early access, exclusive drops, and complimentary care.</p>
+
+        <div class="grid cards three">
+          <div class="plan">
+            <h3 class="plan-name">Classic</h3><p class="muted">Rs99 /mo</p>
+            <ul class="list">
+              <li>— Member-only newsletter</li>
+              <li>— Free exchanges</li>
+              <li>— Birthday perk</li>
+            </ul>
+            <a class="btn btn-outline full" href="#">Buy Membership</a>
+          </div>
+
+          <div class="plan featured">
+            <h3 class="plan-name">Studio</h3><p class="muted">Rs199 / mo</p>
+            <ul class="list">
+              <li>— Early access to drops</li>
+              <li>— 10% off customs</li>
+              <li>— Free cleaning kit</li>
+            </ul>
+            <a class="btn full" href="#">Buy Membership</a>
+          </div>
+
+          <div class="plan">
+            <h3 class="plan-name">Collective</h3><p class="muted">Rs299 / mo</p>
+            <ul class="list">
+              <li>— Limited collab access</li>
+              <li>— 20% off customs</li>
+              <li>— VIP support</li>
+            </ul>
+            <a class="btn btn-outline full" href="#">Buy Membership</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+</main>
+<%- include('partials/footer') %>

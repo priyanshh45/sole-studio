@@ -1,0 +1,48 @@
+<%- include('partials/header') %>
+<section class="section">
+  <div class="container">
+    <h2 class="title">Your Shopping Cart</h2>
+    <div id="cartList"></div>
+    <div id="cartTotal" class="muted"></div>
+    <button id="checkoutBtn" class="btn" style="margin-top:2em;">Proceed to Checkout</button>
+  </div>
+</section>
+<script>
+function renderCart() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let total = 0;
+  let html = '';
+  cart.forEach(item => {
+    html += `<div class="card" style="margin-bottom:10px;">
+      <div class="card-body">
+        <h3>${item.name}</h3>
+        <p class="muted">₹${item.price}</p>
+        <button onclick="removeItem('${item.id}')" class="btn btn-outline">Remove</button>
+      </div>
+    </div>`;
+    total += item.price;
+  });
+  document.getElementById('cartList').innerHTML = html;
+  document.getElementById('cartTotal').textContent = `Total: ₹${total}`;
+}
+function removeItem(id) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart = cart.filter(item => item.id !== id);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+document.addEventListener('DOMContentLoaded', () => {
+  renderCart();
+  document.getElementById('checkoutBtn').onclick = () => {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+      alert('Your cart is empty!');
+    } else {
+      alert('Order placed! Thank you for shopping.');
+      localStorage.setItem('cart', '[]');
+      renderCart();
+    }
+  };
+});
+</script>
+<%- include('partials/footer') %>

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Aero Low — White",
+    "price": 6999,
+    "image": "imgg1.webp"
+  },
+  {
+    "id": 2,
+    "name": "Capri Runner — Black",
+    "price": 2499,
+    "image": "img2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Studio High — Sand",
+    "price": 7999,
+    "image": "img3.webp"
+  },
+  {
+    "id": 4,
+    "name": "City Court — Navy",
+    "price": 2999,
+    "image": "img4.webp"
+  }
+]
